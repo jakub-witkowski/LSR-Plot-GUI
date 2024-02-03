@@ -75,9 +75,7 @@ void MainWindow::on_pushButton_3_clicked()
             segments[i].set_g4_ptr();
         }
 
-        // TApplication app("app", &argc, argv);
         TApplication app("app", nullptr, nullptr);
-        // std::unique_ptr<TPlot> plot = nullptr;
 
         /* determine the number of segments and plot the results */
         if (segments.size() == 1)

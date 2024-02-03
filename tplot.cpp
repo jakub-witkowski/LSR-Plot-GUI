@@ -12,19 +12,21 @@ TPlot::TPlot()
 /* converting constructor */
 TPlot::TPlot(TSegment s)
 {
-    depths = s.depths;
-    ages = s.ages;
-    fit_line = s.fit_line;
-    lsr_plot_values = s.lsr_plot_values;
-    smoothed_lsr_plot_values = s.smoothed_lsr_plot_values;
-    lsr_plot_ages = s. lsr_plot_ages;
+    for (int i = 0; i < s.get_ages_vector_size(); i++)
+    {
+        depths[i] = s.get_depths(i);
+        ages[i] = s.get_ages(i);
+        fit_line[i] = s.get_fit_line(i);
+        lsr_plot_values[i] = s.get_lsr_plot_value(i);
+        smoothed_lsr_plot_values[i] = s.get_smoothed_lsr_plot_value(i);
+        lsr_plot_ages[i] = s.get_lsr_plot_age(i);
+    }
     set_g1_ptr();
     set_g2_ptr();
     set_g3_ptr();
     set_g4_ptr();
     std::cout << "TPlot Converting Constructor" << std::endl;
 }
-
 
 TPlot::~TPlot()
 {
