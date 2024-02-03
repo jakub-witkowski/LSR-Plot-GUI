@@ -24,6 +24,8 @@ set(PROJECT_SOURCES
         mainwindow.ui
         tdata.cpp
         tdata.h
+        tplot.cpp
+        tplot.h
         tpolynomial.cpp
         tpolynomial.h
         tsegment.cpp

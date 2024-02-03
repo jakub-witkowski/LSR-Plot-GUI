@@ -15,6 +15,7 @@ class TPlot
 {
     public:
     TPlot();
+    TPlot(TSegment);
     ~TPlot();
     TCanvas* cnv = new TCanvas("cnv", "cnv", 0, 0, 1200, 800);
 

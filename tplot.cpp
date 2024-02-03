@@ -9,6 +9,23 @@ TPlot::TPlot()
     std::cout << "TPlot Constructor" << std::endl;
 }
 
+/* converting constructor */
+TPlot::TPlot(TSegment s)
+{
+    depths = s.depths;
+    ages = s.ages;
+    fit_line = s.fit_line;
+    lsr_plot_values = s.lsr_plot_values;
+    smoothed_lsr_plot_values = s.smoothed_lsr_plot_values;
+    lsr_plot_ages = s. lsr_plot_ages;
+    set_g1_ptr();
+    set_g2_ptr();
+    set_g3_ptr();
+    set_g4_ptr();
+    std::cout << "TPlot Converting Constructor" << std::endl;
+}
+
+
 TPlot::~TPlot()
 {
     std::cout << " TPlot ~Destructor" << std::endl;
