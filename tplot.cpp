@@ -14,12 +14,12 @@ TPlot::TPlot(TSegment s)
 {
     for (int i = 0; i < s.get_ages_vector_size(); i++)
     {
-        depths[i] = s.get_depths(i);
-        ages[i] = s.get_ages(i);
-        fit_line[i] = s.get_fit_line(i);
-        lsr_plot_values[i] = s.get_lsr_plot_value(i);
-        smoothed_lsr_plot_values[i] = s.get_smoothed_lsr_plot_value(i);
-        lsr_plot_ages[i] = s.get_lsr_plot_age(i);
+        depths.push_back(s.get_depths(i));
+        ages.push_back(s.get_ages(i));
+        fit_line.push_back(s.get_fit_line(i));
+        lsr_plot_values.push_back(s.get_lsr_plot_value(i));
+        smoothed_lsr_plot_values.push_back(s.get_smoothed_lsr_plot_value(i));
+        lsr_plot_ages.push_back(s.get_lsr_plot_age(i));
     }
     set_g1_ptr();
     set_g2_ptr();
