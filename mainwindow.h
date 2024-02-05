@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QAbstractTableModel>
 #include <QtCore>
 // #include <QTableView>
 
@@ -21,6 +22,27 @@ namespace Ui {
 class MainWindow;
 }
 QT_END_NAMESPACE
+
+class TestModel : public QAbstractTableModel
+{
+    Q_OBJECT
+
+public:
+    TestModel(QObject *parent = 0);
+
+    void populateData(const QList<QString> &dataset_depths,const QList<QString> &dataset_ages);
+
+    int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+
+private:
+    QList<QString> tiepoint_depth;
+    QList<QString> tiepoint_age;
+
+};
 
 class MainWindow : public QMainWindow
 {

@@ -10,11 +10,87 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    QList<QString> dataset_depths;
+    QList<QString> dataset_ages;
+
+    // Create some data that is tabular in nature:
+    dataset_depths.append("Thomas");
+    dataset_depths.append("Richard");
+    dataset_depths.append("Harrison");
+    dataset_ages.append("123-456-7890");
+    dataset_ages.append("222-333-4444");
+    dataset_ages.append("333-444-5555");
+
+    // Create model:
+    TestModel *AgeModel = new TestModel(this);
+
+    // Populate model with data:
+    AgeModel->populateData(dataset_depths,dataset_ages);
+
+    // Connect model to table view:
+    ui->tableView->setModel(AgeModel);
+
+    // Make table header visible and display table:
+    ui->tableView->horizontalHeader()->setVisible(true);
+    ui->tableView->show();
 }
+
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+TestModel::TestModel(QObject *parent) : QAbstractTableModel(parent)
+{
+}
+
+// Create a method to populate the model with data:
+void TestModel::populateData(const QList<QString> &dataset_depths,const QList<QString> &dataset_ages)
+{
+    tiepoint_depth.clear();
+    tiepoint_age = dataset_depths;
+    tiepoint_depth.clear();
+    tiepoint_age = dataset_ages;
+    return;
+}
+
+int TestModel::rowCount(const QModelIndex &parent) const
+{
+    Q_UNUSED(parent);
+    return tiepoint_depth.length();
+}
+
+int TestModel::columnCount(const QModelIndex &parent) const
+{
+    Q_UNUSED(parent);
+    return 2;
+}
+
+QVariant TestModel::data(const QModelIndex &index, int role) const
+{
+    if (!index.isValid() || role != Qt::DisplayRole) {
+        return QVariant();
+    }
+    if (index.column() == 0) {
+        return tiepoint_depth[index.row()];
+    } else if (index.column() == 1) {
+        return tiepoint_age[index.row()];
+    }
+    return QVariant();
+}
+
+QVariant TestModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
+        if (section == 0) {
+            return QString("Depth (meters below sea floor)");
+        } else if (section == 1) {
+            return QString("Age (Ma)");
+        }
+    }
+    return QVariant();
 }
 
 void MainWindow::on_pushButton_clicked()
