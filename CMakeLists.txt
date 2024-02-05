@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(LSR-Plot-GUI-test VERSION 0.1 LANGUAGES CXX)
+project(LSR-Plot-GUI VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -33,7 +33,7 @@ set(PROJECT_SOURCES
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(LSR-Plot-GUI-test
+    qt_add_executable(LSR-Plot-GUI
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
@@ -43,28 +43,28 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
-        add_library(LSR-Plot-GUI-test SHARED
+        add_library(LSR-Plot-GUI SHARED
             ${PROJECT_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(LSR-Plot-GUI-test
+        add_executable(LSR-Plot-GUI
             ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
-target_link_libraries(LSR-Plot-GUI-test PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(LSR-Plot-GUI-test PUBLIC ROOT::Hist ROOT::Graf3d)
+target_link_libraries(LSR-Plot-GUI PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(LSR-Plot-GUI PUBLIC ROOT::Hist ROOT::Graf3d)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.LSR-Plot-GUI-test)
+  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.LSR-Plot-GUI)
 endif()
-set_target_properties(LSR-Plot-GUI-test PROPERTIES
+set_target_properties(LSR-Plot-GUI PROPERTIES
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -73,12 +73,12 @@ set_target_properties(LSR-Plot-GUI-test PROPERTIES
 )
 
 include(GNUInstallDirs)
-install(TARGETS LSR-Plot-GUI-test
+install(TARGETS LSR-Plot-GUI
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(LSR-Plot-GUI-test)
+    qt_finalize_executable(LSR-Plot-GUI)
 endif()

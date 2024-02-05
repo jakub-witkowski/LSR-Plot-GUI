@@ -17,10 +17,10 @@
    <widget class="QTableView" name="tableView">
     <property name="geometry">
      <rect>
-      <x>5</x>
-      <y>11</y>
-      <width>371</width>
-      <height>331</height>
+      <x>15</x>
+      <y>51</y>
+      <width>391</width>
+      <height>291</height>
      </rect>
     </property>
    </widget>
@@ -61,6 +61,19 @@
     </property>
     <property name="text">
      <string>Plot results</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>10</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Quit</string>
     </property>
    </widget>
   </widget>

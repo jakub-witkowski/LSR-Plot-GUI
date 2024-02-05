@@ -85,7 +85,7 @@ QVariant TestModel::headerData(int section, Qt::Orientation orientation, int rol
 {
     if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
         if (section == 0) {
-            return QString("Depth (meters below sea floor)");
+            return QString("Depth (mbsf)");
         } else if (section == 1) {
             return QString("Age (Ma)");
         }
@@ -161,7 +161,6 @@ void MainWindow::on_pushButton_3_clicked()
             plot->plot();
             TRootCanvas *rc = (TRootCanvas *)plot->cnv->GetCanvasImp();
             rc->Connect("CloseWindow()", "TApplication", gApplication, "Terminate()");
-            // segments[0].plot_to_png("plot.png");
         }
         else if (segments.size() > 1)
         {
@@ -213,8 +212,6 @@ void MainWindow::on_pushButton_3_clicked()
                 plot->set_g4_ptr();
             }
 
-            // plot->plot_to_png("plot.png");
-            // plot->delete_ptrs();
             plot->plot();
             TRootCanvas *rc = (TRootCanvas *)plot->cnv->GetCanvasImp();
             rc->Connect("CloseWindow()", "TApplication", gApplication, "Terminate()");
@@ -222,5 +219,10 @@ void MainWindow::on_pushButton_3_clicked()
 
         app.Run();
     }
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    exit(0);
 }
 
