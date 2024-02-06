@@ -26,8 +26,6 @@ public:
     bool test_input_order();
     int find_hiatus();
     std::pair<size_t,size_t> make_index(int, int);
-    // TSegment create_segment(size_t, size_t);
-    // void create_segments(TData*, std::vector<TSegment>&);
 
 /* setter functions */
     void set_raw_data(std::string);
