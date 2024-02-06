@@ -102,15 +102,16 @@ void MainWindow::on_pushButton_clicked()
     ui->tableView->show();
 }
 
-void MainWindow::on_pushButton_2_clicked()
-{
-    if (dataset)
-        dataset->find_hiatus();
-}
+// void MainWindow::on_pushButton_2_clicked()
+// {
 
+// }
 
 void MainWindow::on_pushButton_3_clicked()
 {
+    if (dataset)
+        dataset->find_hiatus();
+
     if (dataset->get_segment_indexes_size() != 0)
     {
         for (int i = 0; i < dataset->get_segment_indexes_size(); i++)

@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>430</width>
+    <height>390</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>LSR-Plot</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTableView" name="tableView">
     <property name="geometry">
      <rect>
       <x>15</x>
-      <y>51</y>
+      <y>61</y>
       <width>391</width>
       <height>291</height>
      </rect>
@@ -29,7 +29,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>91</width>
+      <width>101</width>
       <height>31</height>
      </rect>
     </property>
@@ -37,43 +37,43 @@
      <string>Open File</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>10</y>
-      <width>101</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Find hiatus</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>120</x>
       <y>10</y>
-      <width>91</width>
+      <width>221</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Plot results</string>
+     <string>Analyze data and plot results</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>350</x>
       <y>10</y>
-      <width>91</width>
+      <width>61</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
      <string>Quit</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>-3</x>
+      <y>40</y>
+      <width>421</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
   </widget>
@@ -82,7 +82,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>430</width>
      <height>22</height>
     </rect>
    </property>

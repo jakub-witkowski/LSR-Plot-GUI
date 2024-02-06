@@ -1,20 +1,22 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+/* including Qt classes */
 #include <QMainWindow>
 #include <QAbstractTableModel>
 #include <QtCore>
-// #include <QTableView>
 
+/* including self-defined classes */
 #include "tdata.h"
 #include "tsegment.h"
 #include "tpolynomial.h"
 #include "tplot.h"
 
+/* including ROOT Framework classes */
 #include "TApplication.h"
 #include "TRootCanvas.h"
-// #include "mymodel.h"
 
+/* STL header files */
 #include <vector>
 
 QT_BEGIN_NAMESPACE
@@ -63,7 +65,7 @@ public:
 private slots:
     void on_pushButton_clicked();
 
-    void on_pushButton_2_clicked();
+    // void on_pushButton_2_clicked();
 
     void on_pushButton_3_clicked();
 
