@@ -2,38 +2,13 @@
 #include "./ui_mainwindow.h"
 
 #include "tplot.h"
-// #include <string>
-// #include <memory>
 
+#include <QString>
 #include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    QList<QString> dataset_depths;
-    QList<QString> dataset_ages;
-
-    // Create some data that is tabular in nature:
-    dataset_depths.append("Thomas");
-    dataset_depths.append("Richard");
-    dataset_depths.append("Harrison");
-    dataset_ages.append("123-456-7890");
-    dataset_ages.append("222-333-4444");
-    dataset_ages.append("333-444-5555");
-
-    // Create model:
-    TestModel *AgeModel = new TestModel(this);
-
-    // Populate model with data:
-    AgeModel->populateData(dataset_depths,dataset_ages);
-
-    // Connect model to table view:
-    ui->tableView->setModel(AgeModel);
-
-    // Make table header visible and display table:
-    ui->tableView->horizontalHeader()->setVisible(true);
-    ui->tableView->show();
 }
 
 
@@ -50,8 +25,8 @@ TestModel::TestModel(QObject *parent) : QAbstractTableModel(parent)
 void TestModel::populateData(const QList<QString> &dataset_depths,const QList<QString> &dataset_ages)
 {
     tiepoint_depth.clear();
-    tiepoint_age = dataset_depths;
-    tiepoint_depth.clear();
+    tiepoint_depth = dataset_depths;
+    tiepoint_age.clear();
     tiepoint_age = dataset_ages;
     return;
 }
@@ -102,6 +77,29 @@ void MainWindow::on_pushButton_clicked()
 
     dataset = new TData(filename.toStdString());
     dataset->load_input();
+
+    QList<QString> dataset_depths;
+    QList<QString> dataset_ages;
+
+    // load data from dataset to be displayed in widget
+    for (int i = 0; i < dataset->get_depths_vector_size(); i++)
+    {
+        dataset_depths.append(QString::number(dataset->get_depths(i)));
+        dataset_ages.append(QString::number(dataset->get_ages(i)));
+    }
+
+    // Create model:
+    TestModel *AgeModel = new TestModel(this);
+
+    // Populate model with data:
+    AgeModel->populateData(dataset_depths,dataset_ages);
+
+    // Connect model to table view:
+    ui->tableView->setModel(AgeModel);
+
+    // Make table header visible and display table:
+    ui->tableView->horizontalHeader()->setVisible(true);
+    ui->tableView->show();
 }
 
 void MainWindow::on_pushButton_2_clicked()
@@ -113,7 +111,7 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    if (dataset)
+    if (dataset->get_segment_indexes_size() != 0)
     {
         for (int i = 0; i < dataset->get_segment_indexes_size(); i++)
         {
