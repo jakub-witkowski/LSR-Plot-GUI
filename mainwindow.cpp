@@ -1,8 +1,13 @@
+/* QTableView handling and related aspects based on:
+https://riptutorial.com/qt/example/13705/a-simple-read-only-table-to-view-data-from-a-model */
+
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+/* including self-defined classes */
 #include "tplot.h"
 
+/* including Qt classes */
 #include <QString>
 #include <QFileDialog>
 
@@ -10,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     ui->setupUi(this);
 }
-
 
 MainWindow::~MainWindow()
 {
@@ -21,7 +25,7 @@ TestModel::TestModel(QObject *parent) : QAbstractTableModel(parent)
 {
 }
 
-// Create a method to populate the model with data:
+/* Populate the model with data */
 void TestModel::populateData(const QList<QString> &dataset_depths,const QList<QString> &dataset_ages)
 {
     tiepoint_depth.clear();
@@ -102,11 +106,6 @@ void MainWindow::on_pushButton_clicked()
     ui->tableView->show();
 }
 
-// void MainWindow::on_pushButton_2_clicked()
-// {
-
-// }
-
 void MainWindow::on_pushButton_3_clicked()
 {
     if (dataset)
@@ -150,20 +149,19 @@ void MainWindow::on_pushButton_3_clicked()
             segments[i].set_g4_ptr();
         }
 
+        /* ROOT widget TApplication is created */
         TApplication app("app", nullptr, nullptr);
 
         /* determine the number of segments and plot the results */
         if (segments.size() == 1)
         {
             plot = new TPlot(segments[0]);
-            plot->display_ages_vector();
             plot->plot();
             TRootCanvas *rc = (TRootCanvas *)plot->cnv->GetCanvasImp();
             rc->Connect("CloseWindow()", "TApplication", gApplication, "Terminate()");
         }
         else if (segments.size() > 1)
         {
-            // TApplication app("app", &argc, argv);
             plot = new TPlot();
 
             for (int i = 0; i < segments.size(); i++)
