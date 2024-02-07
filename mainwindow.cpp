@@ -111,7 +111,7 @@ void MainWindow::on_pushButton_3_clicked()
     if (dataset)
         dataset->find_hiatus();
 
-    if (dataset->get_segment_indexes_size() != 0)
+    if ((dataset) && (dataset->get_segment_indexes_size() != 0))
     {
         for (int i = 0; i < dataset->get_segment_indexes_size(); i++)
         {
