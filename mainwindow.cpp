@@ -108,9 +108,11 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_3_clicked()
 {
+    /* dataset is checked for whether gaps exist */
     if (dataset)
         dataset->find_hiatus();
 
+    /* if n gaps are found, n+1 class TSegment objects are created, and data is copied to the respective segments */
     if ((dataset) && (dataset->get_segment_indexes_size() != 0))
     {
         for (int i = 0; i < dataset->get_segment_indexes_size(); i++)
@@ -123,6 +125,7 @@ void MainWindow::on_pushButton_3_clicked()
             segments[i].set_g3_ptr();
         }
 
+        /* polynomial fitting is performed; test for overfitting is performed as well */
         for (int i = 0; i < segments.size(); i++)
         {
             for (int j = 0; j < 10; j++)
